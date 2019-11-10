@@ -27,6 +27,8 @@ public class RandomCollection<E> {
 
 	public E next() {
 		double value = random.nextDouble() * total;
-		return map.higherEntry(value).getValue();
+		NavigableMap.Entry<Double, E> next = map.higherEntry(value);
+
+		return next != null ? next.getValue() : null;
 	}
 }

@@ -198,6 +198,11 @@ public class SchematicHandeler {
 
 	private void replaceContainerContent(RandomCollection<String> lootTables, Location location) {
 		String lootTableName = lootTables.next();
+
+		if(lootTableName == null) {
+			return;
+		}
+
 		Random random = new Random();
 		LootTable lootTable = this.lootTablesHandler.getLootTableByName(lootTableName);
 
