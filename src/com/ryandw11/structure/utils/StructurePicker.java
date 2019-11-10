@@ -80,7 +80,14 @@ public class StructurePicker extends BukkitRunnable {
 			}
 			// calculate spawny
 			if(cs.contains("SpawnY")) {
-				bl = ch.getBlock(0, HandleY.calculateY(cs, bl.getY()), 0);
+				int y = HandleY.calculateY(cs, bl.getY());
+
+				//Fix exception when chunk is completely empty (i.e the end), as calculateY returns -1
+				if(y < 0) {
+					return;
+				}
+
+				bl = ch.getBlock(0, y,0);
 			}
 			if(cs.contains("whitelistSpawnBlocks")) {
 				List<Material> materials = new ArrayList<>();
